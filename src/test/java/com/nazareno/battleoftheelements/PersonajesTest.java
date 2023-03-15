@@ -2,7 +2,8 @@ package com.nazareno.battleoftheelements;
 
 import com.nazareno.battleoftheelements.model.escudo.DosEscudos;
 import com.nazareno.battleoftheelements.model.escudo.MasDeDosEscudos;
-import com.nazareno.battleoftheelements.model.escudo.UnEscudo;
+import com.nazareno.battleoftheelements.model.escudo.UnShield;
+import com.nazareno.battleoftheelements.model.personaje.Character;
 import org.junit.Before;
 import org.junit.Test;
 import com.nazareno.battleoftheelements.model.personaje.*;
@@ -11,182 +12,182 @@ import static org.junit.Assert.assertEquals;
 
 public class PersonajesTest {
 
-    Personaje unPersonajeDeAgua;
-    Personaje unPersonajeDeAguaCon20DeEnergia;;
-    Personaje unPersonajeDeTierra;
-    Personaje unPersonajeDeFuego;
-    Personaje unPersonajeDeAire;
+    Character unCharacterDeAgua;
+    Character unCharacterDeAguaCon20DeEnergia;;
+    Character unCharacterDeTierra;
+    Character unCharacterDeFuego;
+    Character unCharacterDeAire;
 
     @Before
     public void init() throws TipoDePersonajeDesconocidoException {
-        PersonajeFactory factory = PersonajeFactory.getInstance();
+        CharacterFactory factory = CharacterFactory.getInstance();
 
         int valorEnergiaInicial = 0;
         int valorVidaInicial = 100;
 
-        unPersonajeDeAgua = factory.getPersonaje("AGUA")
-                .conNombre("Nami")
-                .conEnergia(new Energia(valorEnergiaInicial))
-                .conVida(new Vida(valorVidaInicial));
+        unCharacterDeAgua = factory.getCharacter("AGUA")
+                .named("Nami")
+                .withEnergy(new Energy(valorEnergiaInicial))
+                .withLife(new Life(valorVidaInicial));
 
-        unPersonajeDeAguaCon20DeEnergia = unPersonajeDeAgua.clone().conEnergia(new Energia(20));
+        unCharacterDeAguaCon20DeEnergia = unCharacterDeAgua.clone().withEnergy(new Energy(20));
 
-        unPersonajeDeTierra = factory.getPersonaje("TIERRA")
-                .conNombre("Blitzcrank")
-                .conEnergia(new Energia(valorEnergiaInicial))
-                .conVida(new Vida(valorVidaInicial));
+        unCharacterDeTierra = factory.getCharacter("TIERRA")
+                .named("Blitzcrank")
+                .withEnergy(new Energy(valorEnergiaInicial))
+                .withLife(new Life(valorVidaInicial));
 
-        unPersonajeDeFuego = factory.getPersonaje("FUEGO")
-                .conNombre("Wukong")
-                .conEnergia(new Energia(valorEnergiaInicial))
-                .conVida(new Vida(valorVidaInicial));
+        unCharacterDeFuego = factory.getCharacter("FUEGO")
+                .named("Wukong")
+                .withEnergy(new Energy(valorEnergiaInicial))
+                .withLife(new Life(valorVidaInicial));
 
-        unPersonajeDeAire = factory.getPersonaje("AIRE")
-                .conNombre("Ashe")
-                .conEnergia(new Energia(valorEnergiaInicial))
-                .conVida(new Vida(valorVidaInicial));
+        unCharacterDeAire = factory.getCharacter("AIRE")
+                .named("Ashe")
+                .withEnergy(new Energy(valorEnergiaInicial))
+                .withLife(new Life(valorVidaInicial));
     }
 
     @Test
-    public void unPersonajeDeAguaEsAlimentado() throws PersonajeAlimentadoMasDe3VecesException {
-        unPersonajeDeAgua.alimentar();
-        assertEquals(10, unPersonajeDeAgua.getEnergia());
+    public void unPersonajeDeAguaEsAlimentado() throws CharacterFedMoreThan3TimesException {
+        unCharacterDeAgua.feed();
+        assertEquals(10, unCharacterDeAgua.getEnergy());
     }
 
     @Test
-    public void unPersonajeDeAguaEsAlimentado3Veces() throws PersonajeAlimentadoMasDe3VecesException {
-        alimentar3Veces(unPersonajeDeAgua);
-        assertEquals(20, unPersonajeDeAgua.getEnergia());
+    public void unPersonajeDeAguaEsAlimentado3Veces() throws CharacterFedMoreThan3TimesException {
+        alimentar3Veces(unCharacterDeAgua);
+        assertEquals(20, unCharacterDeAgua.getEnergy());
     }
 
-    private void alimentar3Veces(Personaje personaje) throws PersonajeAlimentadoMasDe3VecesException {
+    private void alimentar3Veces(Character character) throws CharacterFedMoreThan3TimesException {
         for (int i = 0; i < 3; i++) {
-            personaje.alimentar();
+            character.feed();
         }
     }
 
-    @Test(expected = PersonajeAlimentadoMasDe3VecesException.class)
-    public void unPersonajeDeAguaEsAlimentadoMasDe3Veces() throws PersonajeAlimentadoMasDe3VecesException {
-        alimentar3Veces(unPersonajeDeAgua);
-        unPersonajeDeAgua.alimentar();
+    @Test(expected = CharacterFedMoreThan3TimesException.class)
+    public void unPersonajeDeAguaEsAlimentadoMasDe3Veces() throws CharacterFedMoreThan3TimesException {
+        alimentar3Veces(unCharacterDeAgua);
+        unCharacterDeAgua.feed();
     }
 
     @Test
-    public void unPersonajeDeTierraEsAlimentado() throws PersonajeAlimentadoMasDe3VecesException {
-        unPersonajeDeTierra.alimentar();
-        assertEquals(8, unPersonajeDeTierra.getEnergia());
+    public void unPersonajeDeTierraEsAlimentado() throws CharacterFedMoreThan3TimesException {
+        unCharacterDeTierra.feed();
+        assertEquals(8, unCharacterDeTierra.getEnergy());
     }
 
     @Test
-    public void unPerosnajeDeTierraEsAlimentado2Veces() throws PersonajeAlimentadoMasDe3VecesException {
-        unPersonajeDeTierra.alimentar();
-        unPersonajeDeTierra.alimentar();
-        assertEquals(16, unPersonajeDeTierra.getEnergia());
+    public void unPerosnajeDeTierraEsAlimentado2Veces() throws CharacterFedMoreThan3TimesException {
+        unCharacterDeTierra.feed();
+        unCharacterDeTierra.feed();
+        assertEquals(16, unCharacterDeTierra.getEnergy());
     }
 
     @Test
-    public void unPersonajeDeFuegoEsAlimentado() throws PersonajeAlimentadoMasDe3VecesException {
-        unPersonajeDeFuego.conVida(new Vida(10));
-        unPersonajeDeFuego.alimentar();
-        assertEquals(25, unPersonajeDeFuego.getVida());
+    public void unPersonajeDeFuegoEsAlimentado() throws CharacterFedMoreThan3TimesException {
+        unCharacterDeFuego.withLife(new Life(10));
+        unCharacterDeFuego.feed();
+        assertEquals(25, unCharacterDeFuego.getLife());
     }
 
     @Test
-    public void unPersonajeDeFuegoEsAlimentado9Veces() throws PersonajeAlimentadoMasDe3VecesException {
+    public void unPersonajeDeFuegoEsAlimentado9Veces() throws CharacterFedMoreThan3TimesException {
         for (int i = 0; i < 3; i++) {
-            alimentar3Veces(unPersonajeDeFuego);
+            alimentar3Veces(unCharacterDeFuego);
         }
-        assertEquals(100, unPersonajeDeFuego.getVida());
+        assertEquals(100, unCharacterDeFuego.getLife());
     }
 
     @Test
-    public void unPersonajeDeAireEsAlimentado() throws PersonajeAlimentadoMasDe3VecesException {
-        unPersonajeDeAire.conEnergia(new Energia(25));
-        unPersonajeDeAire.alimentar();
-        assertEquals(25, unPersonajeDeAire.getEnergia());
+    public void unPersonajeDeAireEsAlimentado() throws CharacterFedMoreThan3TimesException {
+        unCharacterDeAire.withEnergy(new Energy(25));
+        unCharacterDeAire.feed();
+        assertEquals(25, unCharacterDeAire.getEnergy());
     }
 
     @Test
     public void unPersonajeDeAguaAtaqueAPersonajeDeAireSinEscudo() {
-        unPersonajeDeAguaCon20DeEnergia.atacar(unPersonajeDeAire);
-        assertEquals(80, unPersonajeDeAire.getVida());
+        unCharacterDeAguaCon20DeEnergia.attack(unCharacterDeAire);
+        assertEquals(80, unCharacterDeAire.getLife());
     }
 
     @Test
     public void unPersonajeDeAguaAtaqueAPersonajeDeAireConUnEscudo() {
-        unPersonajeDeAire.setEscudo(new UnEscudo());
-        unPersonajeDeAguaCon20DeEnergia.atacar(unPersonajeDeAire);
-        assertEquals(82, unPersonajeDeAire.getVida());
+        unCharacterDeAire.setShield(new UnShield());
+        unCharacterDeAguaCon20DeEnergia.attack(unCharacterDeAire);
+        assertEquals(82, unCharacterDeAire.getLife());
     }
 
     @Test
     public void unPersonajeDeAguaAtaqueAPersonajeDeAireConDosEscudos() {
-        unPersonajeDeAire.setEscudo(new DosEscudos());
-        unPersonajeDeAguaCon20DeEnergia.atacar(unPersonajeDeAire);
-        assertEquals(84, unPersonajeDeAire.getVida());
+        unCharacterDeAire.setShield(new DosEscudos());
+        unCharacterDeAguaCon20DeEnergia.attack(unCharacterDeAire);
+        assertEquals(84, unCharacterDeAire.getLife());
     }
 
     @Test
     public void unPersonajeDeAguaAtaqueAPersonajeDeAireConMasDeDosEscudos() {
-        unPersonajeDeAire.setEscudo(new MasDeDosEscudos());
-        unPersonajeDeAguaCon20DeEnergia.atacar(unPersonajeDeAire);
-        assertEquals(96, unPersonajeDeAire.getVida());
+        unCharacterDeAire.setShield(new MasDeDosEscudos());
+        unCharacterDeAguaCon20DeEnergia.attack(unCharacterDeAire);
+        assertEquals(96, unCharacterDeAire.getLife());
     }
 
     @Test
     public void unPersonajeDeAguaAtaqueAPersonajeDeFuegoSinEscudo() {
-        unPersonajeDeAguaCon20DeEnergia.atacar(unPersonajeDeFuego);
-        assertEquals(70, unPersonajeDeFuego.getVida());
+        unCharacterDeAguaCon20DeEnergia.attack(unCharacterDeFuego);
+        assertEquals(70, unCharacterDeFuego.getLife());
     }
 
     @Test
     public void unPersonajeDeAguaAtaqueAPersonajeDeFuegoConEscudo() {
-        unPersonajeDeFuego.setEscudo(new UnEscudo());
-        unPersonajeDeAguaCon20DeEnergia.atacar(unPersonajeDeFuego);
-        assertEquals(73, unPersonajeDeFuego.getVida());
+        unCharacterDeFuego.setShield(new UnShield());
+        unCharacterDeAguaCon20DeEnergia.attack(unCharacterDeFuego);
+        assertEquals(73, unCharacterDeFuego.getLife());
     }
 
     @Test
     public void unPersonajeDeAguaAtaqueAPersonajeDeFuegoConDosEscudos() {
-        unPersonajeDeFuego.setEscudo(new DosEscudos());
-        unPersonajeDeAguaCon20DeEnergia.atacar(unPersonajeDeFuego);
-        assertEquals(76, unPersonajeDeFuego.getVida());
+        unCharacterDeFuego.setShield(new DosEscudos());
+        unCharacterDeAguaCon20DeEnergia.attack(unCharacterDeFuego);
+        assertEquals(76, unCharacterDeFuego.getLife());
     }
 
     @Test
     public void unPersonajeDeAguaAtaqueAPersonajeDeFuegoConMasDeDosEscudos() {
-        unPersonajeDeFuego.setEscudo(new MasDeDosEscudos());
-        unPersonajeDeAguaCon20DeEnergia.atacar(unPersonajeDeFuego);
-        assertEquals(94, unPersonajeDeFuego.getVida());
+        unCharacterDeFuego.setShield(new MasDeDosEscudos());
+        unCharacterDeAguaCon20DeEnergia.attack(unCharacterDeFuego);
+        assertEquals(94, unCharacterDeFuego.getLife());
     }
 
     @Test
     public void unPersonajeDeFuegoAtacaOtroPersonajeDeFuegoSinEscudo() {
-        unPersonajeDeFuego.clone().atacar(unPersonajeDeFuego);
-        assertEquals(80, unPersonajeDeFuego.getVida());
+        unCharacterDeFuego.clone().attack(unCharacterDeFuego);
+        assertEquals(80, unCharacterDeFuego.getLife());
     }
 
     @Test
     public void unPersonajeDeFuegoAtacaAPersonajeDeAireSinEscudo() {
-        unPersonajeDeFuego.atacar(unPersonajeDeAire);
-        assertEquals(70, unPersonajeDeAire.getVida());
+        unCharacterDeFuego.attack(unCharacterDeAire);
+        assertEquals(70, unCharacterDeAire.getLife());
     }
 
     @Test
     public void unPersonajeDeFuegoAtacaAPersonajeDeAguaSinEscudo() {
-        unPersonajeDeFuego.atacar(unPersonajeDeAgua);
-        assertEquals(90, unPersonajeDeAgua.getVida());
+        unCharacterDeFuego.attack(unCharacterDeAgua);
+        assertEquals(90, unCharacterDeAgua.getLife());
     }
 
     @Test
     public void unPersonajeDeAireAtacaAPersonajeDeTierraSinEscudo() {
-        unPersonajeDeAire.atacar(unPersonajeDeTierra);
-        assertEquals(80, unPersonajeDeTierra.getVida());
+        unCharacterDeAire.attack(unCharacterDeTierra);
+        assertEquals(80, unCharacterDeTierra.getLife());
     }
 
     @Test
     public void unPersonajeDeAireAtacaAPersonajeDeFuegoSinEscudo() {
-        unPersonajeDeAire.atacar(unPersonajeDeFuego);
-        assertEquals(90, unPersonajeDeFuego.getVida());
+        unCharacterDeAire.attack(unCharacterDeFuego);
+        assertEquals(90, unCharacterDeFuego.getLife());
     }
 }

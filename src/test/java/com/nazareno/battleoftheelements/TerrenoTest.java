@@ -1,5 +1,6 @@
 package com.nazareno.battleoftheelements;
 
+import com.nazareno.battleoftheelements.model.personaje.Character;
 import org.junit.Before;
 import org.junit.Test;
 import com.nazareno.battleoftheelements.model.personaje.*;
@@ -9,10 +10,10 @@ import static org.junit.Assert.assertEquals;
 
 public class TerrenoTest {
 
-    Personaje unPersonajeDeTierra;
-    Personaje unPersonajeDeAgua;
-    Personaje unPersonajeDeAire;
-    Personaje unPersonajeDeFuego;
+    Character unCharacterDeTierra;
+    Character unCharacterDeAgua;
+    Character unCharacterDeAire;
+    Character unCharacterDeFuego;
     Montana montana;
     Precipicio precipicio;
     Lago lago;
@@ -22,10 +23,10 @@ public class TerrenoTest {
 
     @Before
     public void init() {
-        unPersonajeDeTierra = new PersonajeTierra().conEnergia(new Energia(20));
-        unPersonajeDeAgua = new PersonajeAgua().conEnergia(new Energia(20));
-        unPersonajeDeAire = new PersonajeAire().conEnergia(new Energia(20));
-        unPersonajeDeFuego = new PersonajeFuego().conEnergia(new Energia(20));
+        unCharacterDeTierra = new RockCharacter().withEnergy(new Energy(20));
+        unCharacterDeAgua = new WaterCharacter().withEnergy(new Energy(20));
+        unCharacterDeAire = new AirCharacter().withEnergy(new Energy(20));
+        unCharacterDeFuego = new FireCharacter().withEnergy(new Energy(20));
         montana = new Montana();
         precipicio = new Precipicio();
         lago = new Lago();
@@ -36,145 +37,145 @@ public class TerrenoTest {
 
     @Test
     public void unPersonajeDeTierraPasaPorMontana() {
-        unPersonajeDeTierra.pasarPor(montana);
-        assertEquals(20, unPersonajeDeTierra.getEnergia());
+        unCharacterDeTierra.passThrough(montana);
+        assertEquals(20, unCharacterDeTierra.getEnergy());
     }
 
     @Test
     public void unPersonajeDeAguaPasaPorMontana() {
-        unPersonajeDeAgua.pasarPor(montana);
-        assertEquals(19, unPersonajeDeAgua.getEnergia());
+        unCharacterDeAgua.passThrough(montana);
+        assertEquals(19, unCharacterDeAgua.getEnergy());
     }
 
     @Test
     public void unPersonajeDeFuegoPasaPorMontana() {
-        unPersonajeDeFuego.pasarPor(montana);
-        assertEquals(19, unPersonajeDeFuego.getEnergia());
+        unCharacterDeFuego.passThrough(montana);
+        assertEquals(19, unCharacterDeFuego.getEnergy());
     }
 
     @Test
     public void unPersonajeDeAirePasaPorMontana() {
-        unPersonajeDeAire.pasarPor(montana);
-        assertEquals(18, unPersonajeDeAire.getEnergia());
+        unCharacterDeAire.passThrough(montana);
+        assertEquals(18, unCharacterDeAire.getEnergy());
     }
 
     @Test
     public void unPersonajeDeTierraPasaPorPrecipicio() {
-        unPersonajeDeTierra.pasarPor(precipicio);
-        assertEquals(18, unPersonajeDeTierra.getEnergia());
+        unCharacterDeTierra.passThrough(precipicio);
+        assertEquals(18, unCharacterDeTierra.getEnergy());
     }
 
     @Test
     public void unPersonajeDeAguaPasaPorPrecipicio() {
-        unPersonajeDeAgua.pasarPor(precipicio);
-        assertEquals(19, unPersonajeDeAgua.getEnergia());
+        unCharacterDeAgua.passThrough(precipicio);
+        assertEquals(19, unCharacterDeAgua.getEnergy());
     }
 
     @Test
     public void unPersonajeDeFuegoPasaPorPrecipicio() {
-        unPersonajeDeFuego.pasarPor(precipicio);
-        assertEquals(19, unPersonajeDeFuego.getEnergia());
+        unCharacterDeFuego.passThrough(precipicio);
+        assertEquals(19, unCharacterDeFuego.getEnergy());
     }
 
     @Test
     public void unPersonajeDeAirePasaPorPrecipicio() {
-        unPersonajeDeAire.pasarPor(precipicio);
-        assertEquals(20, unPersonajeDeAire.getEnergia());
+        unCharacterDeAire.passThrough(precipicio);
+        assertEquals(20, unCharacterDeAire.getEnergy());
     }
 
     @Test
     public void unPersonajeDeTierraPasaPorLago() {
-        unPersonajeDeTierra.pasarPor(lago);
-        assertEquals(19, unPersonajeDeTierra.getEnergia());
+        unCharacterDeTierra.passThrough(lago);
+        assertEquals(19, unCharacterDeTierra.getEnergy());
     }
 
     @Test
     public void unPersonajeDeAguaPasaPorLago() {
-        unPersonajeDeAgua.pasarPor(lago);
-        assertEquals(20, unPersonajeDeAgua.getEnergia());
+        unCharacterDeAgua.passThrough(lago);
+        assertEquals(20, unCharacterDeAgua.getEnergy());
     }
 
     @Test
     public void unPersonajeDeFuegoPasaPorLago() {
-        unPersonajeDeFuego.pasarPor(lago);
-        assertEquals(18, unPersonajeDeFuego.getEnergia());
+        unCharacterDeFuego.passThrough(lago);
+        assertEquals(18, unCharacterDeFuego.getEnergy());
     }
 
     @Test
     public void unPersonajeDeAirePasaPorLago() {
-        unPersonajeDeAire.pasarPor(lago);
-        assertEquals(19, unPersonajeDeAire.getEnergia());
+        unCharacterDeAire.passThrough(lago);
+        assertEquals(19, unCharacterDeAire.getEnergy());
     }
 
     @Test
     public void unPersonajeDeTierraPasaPorVolcan() {
-        unPersonajeDeTierra.pasarPor(volcan);
-        assertEquals(19, unPersonajeDeTierra.getEnergia());
+        unCharacterDeTierra.passThrough(volcan);
+        assertEquals(19, unCharacterDeTierra.getEnergy());
     }
 
     @Test
     public void unPersonajeDeAguaPasaPorVolcan() {
-        unPersonajeDeAgua.pasarPor(volcan);
-        assertEquals(18, unPersonajeDeAgua.getEnergia());
+        unCharacterDeAgua.passThrough(volcan);
+        assertEquals(18, unCharacterDeAgua.getEnergy());
     }
 
     @Test
     public void unPersonajeDeFuegoPasaPorVolcan() {
-        unPersonajeDeFuego.pasarPor(volcan);
-        assertEquals(20, unPersonajeDeFuego.getEnergia());
+        unCharacterDeFuego.passThrough(volcan);
+        assertEquals(20, unCharacterDeFuego.getEnergy());
     }
 
     @Test
     public void unPersonajeDeAirePasaPorVolcan() {
-        unPersonajeDeAire.pasarPor(volcan);
-        assertEquals(19, unPersonajeDeAire.getEnergia());
+        unCharacterDeAire.passThrough(volcan);
+        assertEquals(19, unCharacterDeAire.getEnergy());
     }
 
     @Test
     public void unPersonajeDeTierraPasaPorCamino() {
-        unPersonajeDeTierra.pasarPor(camino);
-        assertEquals(19, unPersonajeDeTierra.getEnergia());
+        unCharacterDeTierra.passThrough(camino);
+        assertEquals(19, unCharacterDeTierra.getEnergy());
     }
 
     @Test
     public void unPersonajeDeAguaPasaPorCamino() {
-        unPersonajeDeAgua.pasarPor(camino);
-        assertEquals(19, unPersonajeDeAgua.getEnergia());
+        unCharacterDeAgua.passThrough(camino);
+        assertEquals(19, unCharacterDeAgua.getEnergy());
     }
 
     @Test
     public void unPersonajeDeFuegoPasaPorCamino() {
-        unPersonajeDeFuego.pasarPor(camino);
-        assertEquals(19, unPersonajeDeFuego.getEnergia());
+        unCharacterDeFuego.passThrough(camino);
+        assertEquals(19, unCharacterDeFuego.getEnergy());
     }
 
     @Test
     public void unPersonajeDeAirePasaPorCamino() {
-        unPersonajeDeAire.pasarPor(camino);
-        assertEquals(19, unPersonajeDeAire.getEnergia());
+        unCharacterDeAire.passThrough(camino);
+        assertEquals(19, unCharacterDeAire.getEnergy());
     }
 
     @Test
     public void unPersonajeDeTierraPasaPorVacio() {
-        unPersonajeDeTierra.pasarPor(vacio);
-        assertEquals(5, unPersonajeDeTierra.getEnergia());
+        unCharacterDeTierra.passThrough(vacio);
+        assertEquals(5, unCharacterDeTierra.getEnergy());
     }
 
     @Test
     public void unPersonajeDeAguaPasaPorVacio() {
-        unPersonajeDeAgua.pasarPor(vacio);
-        assertEquals(5, unPersonajeDeAgua.getEnergia());
+        unCharacterDeAgua.passThrough(vacio);
+        assertEquals(5, unCharacterDeAgua.getEnergy());
     }
 
     @Test
     public void unPersonajeDeFuegoPasaPorVacio() {
-        unPersonajeDeFuego.pasarPor(vacio);
-        assertEquals(5, unPersonajeDeFuego.getEnergia());
+        unCharacterDeFuego.passThrough(vacio);
+        assertEquals(5, unCharacterDeFuego.getEnergy());
     }
 
     @Test
     public void unPersonajeDeAirePasaPorVacio() {
-        unPersonajeDeAire.pasarPor(vacio);
-        assertEquals(5, unPersonajeDeAire.getEnergia());
+        unCharacterDeAire.passThrough(vacio);
+        assertEquals(5, unCharacterDeAire.getEnergy());
     }
 }

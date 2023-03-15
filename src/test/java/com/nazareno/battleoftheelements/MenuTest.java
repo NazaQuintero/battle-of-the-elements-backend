@@ -1,6 +1,7 @@
 package com.nazareno.battleoftheelements;
 
 import com.nazareno.battleoftheelements.model.Menu;
+import com.nazareno.battleoftheelements.model.personaje.Character;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Before;
@@ -18,61 +19,61 @@ import static org.mockito.Mockito.*;
 public class MenuTest {
 
     Menu menu;
-    PersonajeFactory factory;
-    Personaje unPersonaje;
+    CharacterFactory factory;
+    Character unCharacter;
 
     @Before
     public void init() throws TipoDePersonajeDesconocidoException {
         this.menu = new Menu();
-        this.factory = PersonajeFactory.getInstance();
-        this.unPersonaje = factory.getPersonaje("FUEGO")
-                .conNombre("Wukong")
-                .conEnergia(new Energia(20))
-                .conVida(new Vida(100));
+        this.factory = CharacterFactory.getInstance();
+        this.unCharacter = factory.getCharacter("FUEGO")
+                .named("Wukong")
+                .withEnergy(new Energy(20))
+                .withLife(new Life(100));
     }
 
     @Test
     public void seAgregaUnPersonaje() {
-        menu.agregarPersonaje(unPersonaje);
+        menu.agregarPersonaje(unCharacter);
         assertEquals(1, menu.getCantidadPersonajes());
     }
 
     @Test
     public void seAgrega2VecesElMismoPersonaje() {
-        menu.agregarPersonaje(unPersonaje);
-        menu.agregarPersonaje(unPersonaje);
+        menu.agregarPersonaje(unCharacter);
+        menu.agregarPersonaje(unCharacter);
         assertEquals(1, menu.getCantidadPersonajes());
     }
 
     @Test
     @Parameters({"Wukong"})
     public void seObtieneUnPersonajePorNombre(String nombrePersonaje) {
-        menu.agregarPersonaje(unPersonaje);
-        assertEquals(unPersonaje, menu.getPersonaje(nombrePersonaje));
+        menu.agregarPersonaje(unCharacter);
+        assertEquals(unCharacter, menu.getPersonaje(nombrePersonaje));
     }
 
     @Test
     @Parameters({"Wukong"})
     public void seBorraUnPersonajePorElNombre(String nombrePersonaje) {
-        menu.agregarPersonaje(unPersonaje);
+        menu.agregarPersonaje(unCharacter);
         menu.borrarPersonaje(nombrePersonaje);
         assertEquals(0, menu.getCantidadPersonajes());
     }
 
     @Test
-    public void seAlimentaUnPersonaje() throws PersonajeAlimentadoMasDe3VecesException {
-        Personaje personaje = mock(Personaje.class);
-        menu.agregarPersonaje(personaje);
-        menu.alimentar(personaje.getNombre());
-        verify(personaje, times(1)).alimentar();
+    public void seAlimentaUnPersonaje() throws CharacterFedMoreThan3TimesException {
+        Character character = mock(Character.class);
+        menu.agregarPersonaje(character);
+        menu.alimentar(character.getName());
+        verify(character, times(1)).feed();
     }
 
     @Test
     public void seObtieneElNombreDeTodosLosPersonajes() {
         List<String> nombresEsperados = Arrays.asList("Wukong", "Blitzcrank", "Varus");
-        menu.agregarPersonaje(unPersonaje);
-        menu.agregarPersonaje(unPersonaje.clone().conNombre("Blitzcrank"));
-        menu.agregarPersonaje(unPersonaje.clone().conNombre("Varus"));
+        menu.agregarPersonaje(unCharacter);
+        menu.agregarPersonaje(unCharacter.clone().named("Blitzcrank"));
+        menu.agregarPersonaje(unCharacter.clone().named("Varus"));
         assertEquals(nombresEsperados, menu.obtenerNombrePersonajes());
     }
 }

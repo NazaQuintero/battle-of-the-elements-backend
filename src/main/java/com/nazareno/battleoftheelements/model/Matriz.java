@@ -1,6 +1,6 @@
 package com.nazareno.battleoftheelements.model;
 
-import com.nazareno.battleoftheelements.model.terreno.Terreno;
+import com.nazareno.battleoftheelements.model.terreno.Ground;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -21,8 +21,8 @@ public class Matriz {
         return this.matriz.stream().filter(p -> p.equals(posicion)).findAny();
     }
 
-    public void setTerrenoEnPosicion(Terreno terreno, Posicion posicion) {
-        getSearchedPosition(posicion).ifPresent(searchedPos -> searchedPos.setTerreno(terreno));
+    public void setTerrenoEnPosicion(Ground ground, Posicion posicion) {
+        getSearchedPosition(posicion).ifPresent(searchedPos -> searchedPos.setTerreno(ground));
     }
 
     public String getTipoDeTerreno(Posicion posicion) throws PositionDoesNotExistException {

@@ -1,10 +1,10 @@
 package com.nazareno.battleoftheelements.model.personaje;
 
-public class Vida {
+public class Life {
     public static final int VIDA_MAXIMA = 100;
     private int valor;
 
-    public Vida(int valor) {
+    public Life(int valor) {
         this.valor = valor;
     }
 

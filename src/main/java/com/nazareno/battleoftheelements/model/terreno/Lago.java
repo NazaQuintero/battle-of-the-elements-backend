@@ -1,6 +1,6 @@
 package com.nazareno.battleoftheelements.model.terreno;
 
-public class Lago implements Terreno {
+public class Lago implements Ground {
     @Override
     public String getType() {
         return "LAGO";

@@ -2,7 +2,7 @@ package com.nazareno.battleoftheelements.model.escudo;
 
 import com.nazareno.battleoftheelements.model.common.Prototype;
 
-public class SinEscudo extends Escudo {
+public class WithoutShield extends Shield {
     @Override
     public int cubrirDanio(int danio) {
         return danio;
@@ -10,6 +10,6 @@ public class SinEscudo extends Escudo {
 
     @Override
     public Prototype clone() {
-        return new SinEscudo();
+        return new WithoutShield();
     }
 }

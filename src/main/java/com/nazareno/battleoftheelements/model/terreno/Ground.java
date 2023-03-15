@@ -1,6 +1,6 @@
 package com.nazareno.battleoftheelements.model.terreno;
 
-public interface Terreno {
+public interface Ground {
     String getType();
 
     int obtenerCostoDeEnergiaDadoQuePasaAgua();

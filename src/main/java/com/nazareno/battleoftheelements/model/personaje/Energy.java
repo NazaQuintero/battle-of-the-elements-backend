@@ -1,10 +1,10 @@
 package com.nazareno.battleoftheelements.model.personaje;
 
-public class Energia {
+public class Energy {
     private int valor;
     public static final int ENERGIA_MAXIMA = 20;
 
-    public Energia(int valor) {
+    public Energy(int valor) {
         this.valor = valor;
     }
 

@@ -1,21 +1,21 @@
 package com.nazareno.battleoftheelements.model;
 
-import com.nazareno.battleoftheelements.model.terreno.Terreno;
-import com.nazareno.battleoftheelements.model.terreno.TerrenoIndefinido;
+import com.nazareno.battleoftheelements.model.terreno.Ground;
+import com.nazareno.battleoftheelements.model.terreno.GroundIndefinido;
 
 public class Posicion {
     private final int x;
     private final int y;
-    private Terreno terreno;
+    private Ground ground;
 
-    public void setTerreno(Terreno terreno) {
-        this.terreno = terreno;
+    public void setTerreno(Ground ground) {
+        this.ground = ground;
     }
 
     public Posicion(int x, int y) {
         this.x = x;
         this.y = y;
-        this.terreno = new TerrenoIndefinido();
+        this.ground = new GroundIndefinido();
     }
 
     public int getX() {
@@ -31,6 +31,6 @@ public class Posicion {
     }
 
     public String getTipoDeTerreno() {
-        return this.terreno.getType();
+        return this.ground.getType();
     }
 }

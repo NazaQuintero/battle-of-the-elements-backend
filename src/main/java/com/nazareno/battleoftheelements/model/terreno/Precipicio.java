@@ -1,6 +1,6 @@
 package com.nazareno.battleoftheelements.model.terreno;
 
-public class Precipicio implements Terreno {
+public class Precipicio implements Ground {
     @Override
     public String getType() {
         return "PRECIPICIO";

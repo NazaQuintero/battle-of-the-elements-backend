@@ -1,6 +1,6 @@
 package com.nazareno.battleoftheelements.model.terreno;
 
-public class Montana implements Terreno {
+public class Montana implements Ground {
     @Override
     public String getType() {
         return "MONTANA";

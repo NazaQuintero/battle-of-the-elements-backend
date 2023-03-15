@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 public class TerrenosMultiton {
 
     private static TerrenosMultiton instance;
-    private static Map<String, Terreno> terrenosMap;
+    private static Map<String, Ground> terrenosMap;
 
     private TerrenosMultiton() {
         terrenosMap = Stream.of(new Object[][] {
@@ -17,7 +17,7 @@ public class TerrenosMultiton {
                 { "MONTANA", new Montana() },
                 { "CAMINO", new Camino() },
                 { "VACIO", new Vacio() },
-        }).collect(Collectors.toMap(data -> (String) data[0], data -> (Terreno) data[1]));
+        }).collect(Collectors.toMap(data -> (String) data[0], data -> (Ground) data[1]));
     }
 
     public static TerrenosMultiton getInstance() {
@@ -27,7 +27,7 @@ public class TerrenosMultiton {
         return instance;
     }
 
-    public Terreno getTerreno(String terreno) {
+    public Ground getTerreno(String terreno) {
         return terrenosMap.get(terreno);
     }
 }

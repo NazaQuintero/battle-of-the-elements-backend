@@ -1,6 +1,6 @@
 package com.nazareno.battleoftheelements.model;
 
-import com.nazareno.battleoftheelements.model.terreno.Terreno;
+import com.nazareno.battleoftheelements.model.terreno.Ground;
 
 public class Tablero {
     private Matriz matriz;
@@ -13,7 +13,7 @@ public class Tablero {
         return this.matriz.getTipoDeTerreno(posicion);
     }
 
-    public void setTerrenoEnPosicion(Terreno terreno, Posicion posicion) {
-        this.matriz.setTerrenoEnPosicion(terreno, posicion);
+    public void setTerrenoEnPosicion(Ground ground, Posicion posicion) {
+        this.matriz.setTerrenoEnPosicion(ground, posicion);
     }
 }

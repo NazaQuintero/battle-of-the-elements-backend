@@ -1,6 +1,6 @@
 package com.nazareno.battleoftheelements.model.terreno;
 
-public class TerrenoIndefinido implements Terreno {
+public class GroundIndefinido implements Ground {
     @Override
     public String getType() {
         return "INDEFINIDO";

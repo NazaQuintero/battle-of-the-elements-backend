@@ -1,9 +1,11 @@
 package com.nazareno.battleoftheelements.model.ground;
 
+import static com.nazareno.battleoftheelements.model.ground.GroundType.LAKE;
+
 public class Lake implements Ground {
     @Override
     public String getType() {
-        return "LAKE";
+        return LAKE.toString();
     }
 
     @Override

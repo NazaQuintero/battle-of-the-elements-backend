@@ -1,9 +1,11 @@
 package com.nazareno.battleoftheelements.model.ground;
 
+import static com.nazareno.battleoftheelements.model.ground.GroundType.PATH;
+
 public class Path implements Ground {
     @Override
     public String getType() {
-        return "PATH";
+        return PATH.toString();
     }
 
     @Override

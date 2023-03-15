@@ -1,9 +1,11 @@
 package com.nazareno.battleoftheelements.model.ground;
 
+import static com.nazareno.battleoftheelements.model.ground.GroundType.VOLCANO;
+
 public class Volcano implements Ground {
     @Override
     public String getType() {
-        return "VOLCANO";
+        return VOLCANO.toString();
     }
 
     @Override

@@ -1,9 +1,11 @@
 package com.nazareno.battleoftheelements.model.ground;
 
+import static com.nazareno.battleoftheelements.model.ground.GroundType.VOID;
+
 public class Void implements Ground {
     @Override
     public String getType() {
-        return "VOID";
+        return VOID.toString();
     }
 
     @Override

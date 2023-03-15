@@ -1,9 +1,11 @@
 package com.nazareno.battleoftheelements.model.ground;
 
+import static com.nazareno.battleoftheelements.model.ground.GroundType.MOUNTAIN;
+
 public class Mountain implements Ground {
     @Override
     public String getType() {
-        return "MOUNTAIN";
+        return MOUNTAIN.toString();
     }
 
     @Override

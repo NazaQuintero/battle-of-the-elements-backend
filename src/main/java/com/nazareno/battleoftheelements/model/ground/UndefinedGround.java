@@ -3,7 +3,7 @@ package com.nazareno.battleoftheelements.model.ground;
 public class UndefinedGround implements Ground {
     @Override
     public String getType() {
-        return "INDEFINIDO";
+        return "UNDEFINED";
     }
 
     @Override

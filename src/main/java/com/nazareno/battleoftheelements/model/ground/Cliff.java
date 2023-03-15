@@ -1,9 +1,11 @@
 package com.nazareno.battleoftheelements.model.ground;
 
+import static com.nazareno.battleoftheelements.model.ground.GroundType.CLIFF;
+
 public class Cliff implements Ground {
     @Override
     public String getType() {
-        return "CLIFF";
+        return CLIFF.toString();
     }
 
     @Override

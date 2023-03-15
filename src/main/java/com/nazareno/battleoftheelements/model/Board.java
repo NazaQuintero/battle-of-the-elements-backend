@@ -1,5 +1,6 @@
 package com.nazareno.battleoftheelements.model;
 
+import com.nazareno.battleoftheelements.exception.PositionDoesNotExistException;
 import com.nazareno.battleoftheelements.model.ground.Ground;
 
 public class Board {

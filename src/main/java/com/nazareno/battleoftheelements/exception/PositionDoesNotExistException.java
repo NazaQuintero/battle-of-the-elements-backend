@@ -1,4 +1,4 @@
-package com.nazareno.battleoftheelements.model;
+package com.nazareno.battleoftheelements.exception;
 
 public class PositionDoesNotExistException extends Exception {
 }

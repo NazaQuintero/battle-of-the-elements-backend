@@ -1,4 +1,4 @@
-package com.nazareno.battleoftheelements.model.character;
+package com.nazareno.battleoftheelements.exception;
 
 public class UnknownCharacterTypeException extends Exception {
 }

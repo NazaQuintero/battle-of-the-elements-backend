@@ -1,5 +1,7 @@
 package com.nazareno.battleoftheelements.model.character;
 
+import com.nazareno.battleoftheelements.exception.UnknownCharacterTypeException;
+
 public class CharacterFactory {
     private static CharacterFactory instance;
 

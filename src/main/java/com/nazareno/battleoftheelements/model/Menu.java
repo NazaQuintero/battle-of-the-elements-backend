@@ -1,7 +1,7 @@
 package com.nazareno.battleoftheelements.model;
 
 import com.nazareno.battleoftheelements.model.character.Character;
-import com.nazareno.battleoftheelements.model.character.CharacterFedMoreThan3TimesException;
+import com.nazareno.battleoftheelements.exception.CharacterFedMoreThan3TimesException;
 
 import java.util.ArrayList;
 import java.util.HashMap;

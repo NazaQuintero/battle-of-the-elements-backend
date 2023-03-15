@@ -1,7 +1,7 @@
 package com.nazareno.battleoftheelements;
 
 import com.nazareno.battleoftheelements.model.Position;
-import com.nazareno.battleoftheelements.model.PositionDoesNotExistException;
+import com.nazareno.battleoftheelements.exception.PositionDoesNotExistException;
 import com.nazareno.battleoftheelements.model.Board;
 import com.nazareno.battleoftheelements.model.ground.GroundType;
 import org.junit.Before;

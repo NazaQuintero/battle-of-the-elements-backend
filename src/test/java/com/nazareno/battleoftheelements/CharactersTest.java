@@ -1,5 +1,7 @@
 package com.nazareno.battleoftheelements;
 
+import com.nazareno.battleoftheelements.exception.CharacterFedMoreThan3TimesException;
+import com.nazareno.battleoftheelements.exception.UnknownCharacterTypeException;
 import com.nazareno.battleoftheelements.model.shield.TwoShields;
 import com.nazareno.battleoftheelements.model.shield.MoreThanTwoShields;
 import com.nazareno.battleoftheelements.model.shield.OneShield;

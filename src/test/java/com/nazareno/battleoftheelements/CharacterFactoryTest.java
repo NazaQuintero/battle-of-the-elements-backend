@@ -1,5 +1,6 @@
 package com.nazareno.battleoftheelements;
 
+import com.nazareno.battleoftheelements.exception.UnknownCharacterTypeException;
 import com.nazareno.battleoftheelements.model.character.Character;
 import org.junit.Test;
 import com.nazareno.battleoftheelements.model.character.*;

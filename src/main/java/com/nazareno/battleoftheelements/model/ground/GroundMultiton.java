@@ -11,12 +11,12 @@ public class GroundMultiton {
 
     private GroundMultiton() {
         groundsMap = Stream.of(new Object[][] {
-                { "LAGO", new Lake() },
-                { "VOLCAN", new Volcano() },
-                { "PRECIPICIO", new Cliff() },
-                { "MONTANA", new Mountain() },
-                { "CAMINO", new Path() },
-                { "VACIO", new Void() },
+                { "LAKE", new Lake() },
+                { "VOLCANO", new Volcano() },
+                { "CLIFF", new Cliff() },
+                { "MOUNTAIN", new Mountain() },
+                { "PATH", new Path() },
+                { "VOID", new Void() },
         }).collect(Collectors.toMap(data -> (String) data[0], data -> (Ground) data[1]));
     }
 

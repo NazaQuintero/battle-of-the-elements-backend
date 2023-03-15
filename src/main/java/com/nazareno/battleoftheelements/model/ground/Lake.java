@@ -3,7 +3,7 @@ package com.nazareno.battleoftheelements.model.ground;
 public class Lake implements Ground {
     @Override
     public String getType() {
-        return "LAGO";
+        return "LAKE";
     }
 
     @Override

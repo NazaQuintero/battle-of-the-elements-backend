@@ -3,7 +3,7 @@ package com.nazareno.battleoftheelements.model.ground;
 public class Void implements Ground {
     @Override
     public String getType() {
-        return "VACIO";
+        return "VOID";
     }
 
     @Override

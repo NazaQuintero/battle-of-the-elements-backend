@@ -3,7 +3,7 @@ package com.nazareno.battleoftheelements.model.ground;
 public class Path implements Ground {
     @Override
     public String getType() {
-        return "CAMINO";
+        return "PATH";
     }
 
     @Override

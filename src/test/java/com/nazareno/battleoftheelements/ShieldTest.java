@@ -8,25 +8,25 @@ import static org.junit.Assert.assertEquals;
 public class ShieldTest {
 
     @Test
-    public void sinEscudoNoCubreDanio() {
+    public void withoutShieldCannotCoverDamage() {
         Shield shield = new WithoutShield();
         assertEquals(20, shield.coverDamage(20));
     }
 
     @Test
-    public void unPtoDeEscudoCubreUn10PorCiento() {
+    public void oneShieldCovers10PerCentOfTheDamage() {
         Shield shield = new OneShield();
         assertEquals(9, shield.coverDamage(10));
     }
 
     @Test
-    public void dosEscudosCubreUn20PorCiento() {
+    public void twoShieldsCover20PerCentOfTheDamage() {
         Shield shield = new TwoShields();
         assertEquals(8, shield.coverDamage(10));
     }
 
     @Test
-    public void masDeDosEscudosCubreUn80PorCiento() {
+    public void moreThanTwoShieldCover80PerCentOfTheDamage() {
         Shield shield = new MoreThanTwoShields();
         assertEquals(2, shield.coverDamage(10));
     }

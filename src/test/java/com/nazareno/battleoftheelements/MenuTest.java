@@ -20,48 +20,48 @@ public class MenuTest {
 
     Menu menu;
     CharacterFactory factory;
-    Character unCharacter;
+    Character aCharacter;
 
     @Before
     public void init() throws UnknownCharacterTypeException {
         this.menu = new Menu();
         this.factory = CharacterFactory.getInstance();
-        this.unCharacter = factory.getCharacter("FUEGO")
+        this.aCharacter = factory.getCharacter("FUEGO")
                 .named("Wukong")
                 .withEnergy(new Energy(20))
                 .withLife(new Life(100));
     }
 
     @Test
-    public void seAgregaUnPersonaje() {
-        menu.addCharacter(unCharacter);
+    public void aCharacterIsAdded() {
+        menu.addCharacter(aCharacter);
         assertEquals(1, menu.getCharactersQuantity());
     }
 
     @Test
-    public void seAgrega2VecesElMismoPersonaje() {
-        menu.addCharacter(unCharacter);
-        menu.addCharacter(unCharacter);
+    public void sameCharacterIsAddedTwice() {
+        menu.addCharacter(aCharacter);
+        menu.addCharacter(aCharacter);
         assertEquals(1, menu.getCharactersQuantity());
     }
 
     @Test
     @Parameters({"Wukong"})
-    public void seObtieneUnPersonajePorNombre(String nombrePersonaje) {
-        menu.addCharacter(unCharacter);
-        assertEquals(unCharacter, menu.getCharacter(nombrePersonaje));
+    public void aCharacterIsObtainedByName(String characterName) {
+        menu.addCharacter(aCharacter);
+        assertEquals(aCharacter, menu.getCharacter(characterName));
     }
 
     @Test
     @Parameters({"Wukong"})
-    public void seBorraUnPersonajePorElNombre(String nombrePersonaje) {
-        menu.addCharacter(unCharacter);
-        menu.deleteCharacter(nombrePersonaje);
+    public void aCharacterIsDeletedByName(String characterName) {
+        menu.addCharacter(aCharacter);
+        menu.deleteCharacter(characterName);
         assertEquals(0, menu.getCharactersQuantity());
     }
 
     @Test
-    public void seAlimentaUnPersonaje() throws CharacterFedMoreThan3TimesException {
+    public void aCharacterIsFed() throws CharacterFedMoreThan3TimesException {
         Character character = mock(Character.class);
         menu.addCharacter(character);
         menu.feed(character.getName());
@@ -69,11 +69,11 @@ public class MenuTest {
     }
 
     @Test
-    public void seObtieneElNombreDeTodosLosPersonajes() {
-        List<String> nombresEsperados = Arrays.asList("Wukong", "Blitzcrank", "Varus");
-        menu.addCharacter(unCharacter);
-        menu.addCharacter(unCharacter.clone().named("Blitzcrank"));
-        menu.addCharacter(unCharacter.clone().named("Varus"));
-        assertEquals(nombresEsperados, menu.getCharactersNameAsList());
+    public void allCharactersNameAreRetrievedAsList() {
+        List<String> expectedNames = Arrays.asList("Wukong", "Blitzcrank", "Varus");
+        menu.addCharacter(aCharacter);
+        menu.addCharacter(aCharacter.clone().named("Blitzcrank"));
+        menu.addCharacter(aCharacter.clone().named("Varus"));
+        assertEquals(expectedNames, menu.getCharactersNameAsList());
     }
 }

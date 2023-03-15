@@ -3,7 +3,7 @@ package com.nazareno.battleoftheelements.model.ground;
 public class Volcano implements Ground {
     @Override
     public String getType() {
-        return "VOLCAN";
+        return "VOLCANO";
     }
 
     @Override

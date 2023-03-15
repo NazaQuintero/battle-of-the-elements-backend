@@ -3,7 +3,7 @@ package com.nazareno.battleoftheelements.model.ground;
 public class Mountain implements Ground {
     @Override
     public String getType() {
-        return "MONTANA";
+        return "MOUNTAIN";
     }
 
     @Override

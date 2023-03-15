@@ -3,7 +3,7 @@ package com.nazareno.battleoftheelements.model.ground;
 public class Cliff implements Ground {
     @Override
     public String getType() {
-        return "PRECIPICIO";
+        return "CLIFF";
     }
 
     @Override

@@ -17,8 +17,8 @@ public abstract class Character implements Prototype {
     public Character(Character p) {
         if (p != null) {
             this.name = String.valueOf(p.name);
-            this.energy = new Energy(p.energy.getValor());
-            this.life = new Life(p.life.getValor());
+            this.energy = new Energy(p.energy.getValue());
+            this.life = new Life(p.life.getValue());
             this.shield = (Shield) p.shield.clone();
         }
     }
@@ -35,11 +35,11 @@ public abstract class Character implements Prototype {
     public void feed() throws CharacterFedMoreThan3TimesException { }
 
     public int getEnergy() {
-        return this.energy.getValor();
+        return this.energy.getValue();
     }
 
     public int getLife() {
-        return this.life.getValor();
+        return this.life.getValue();
     }
 
     public String getName() {

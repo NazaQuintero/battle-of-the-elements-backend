@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import com.nazareno.battleoftheelements.model.character.*;
 
+import static com.nazareno.battleoftheelements.model.character.CharacterType.*;
 import static org.junit.Assert.assertEquals;
 
 public class CharactersTest {
@@ -25,24 +26,24 @@ public class CharactersTest {
         int initialEnergyValue = 0;
         int initialLifeValue = 100;
 
-        aWaterCharacter = factory.getCharacter("AGUA")
+        aWaterCharacter = factory.getCharacter(WATER.toString())
                 .named("Nami")
                 .withEnergy(new Energy(initialEnergyValue))
                 .withLife(new Life(initialLifeValue));
 
         aWaterCharacterWith20Energy = aWaterCharacter.clone().withEnergy(new Energy(20));
 
-        aRockCharacter = factory.getCharacter("TIERRA")
+        aRockCharacter = factory.getCharacter(ROCK.toString())
                 .named("Blitzcrank")
                 .withEnergy(new Energy(initialEnergyValue))
                 .withLife(new Life(initialLifeValue));
 
-        aFireCharacter = factory.getCharacter("FUEGO")
+        aFireCharacter = factory.getCharacter(FIRE.toString())
                 .named("Wukong")
                 .withEnergy(new Energy(initialEnergyValue))
                 .withLife(new Life(initialLifeValue));
 
-        anAirCharacter = factory.getCharacter("AIRE")
+        anAirCharacter = factory.getCharacter(AIR.toString())
                 .named("Ashe")
                 .withEnergy(new Energy(initialEnergyValue))
                 .withLife(new Life(initialLifeValue));

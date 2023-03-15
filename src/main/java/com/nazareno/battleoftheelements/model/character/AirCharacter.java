@@ -40,8 +40,8 @@ public class AirCharacter extends Character {
 
     @Override
     protected void receiveDamageDueToAWaterCharacterHasAttacked(WaterCharacter waterCharacter) {
-        int valor = this.shield.coverDamage(waterCharacter.getDamageAgainstAir());
-        this.life.decrementarValor(valor);
+        int value = this.shield.coverDamage(waterCharacter.getDamageAgainstAir());
+        this.life.decrementValue(value);
     }
 
     @Override
@@ -56,8 +56,8 @@ public class AirCharacter extends Character {
 
     @Override
     protected void receiveDamageDueToAFireCharacterHasAttacked(FireCharacter fireCharacter) {
-        int valor = this.shield.coverDamage(fireCharacter.getDamageAgainstAir());
-        this.life.decrementarValor(valor);
+        int value = this.shield.coverDamage(fireCharacter.getDamageAgainstAir());
+        this.life.decrementValue(value);
     }
 
     @Override
@@ -77,11 +77,11 @@ public class AirCharacter extends Character {
 
     @Override
     public String getType() {
-        return "AIRE";
+        return CharacterType.AIR.toString();
     }
 
     @Override
     public void passThrough(Ground ground) {
-        this.energy.decrementarValor(ground.getEnergyCostDueToAnAirCharacterPassing());
+        this.energy.decrementValue(ground.getEnergyCostDueToAnAirCharacterPassing());
     }
 }

@@ -4,8 +4,8 @@ import com.nazareno.battleoftheelements.model.ground.Ground;
 
 public class WaterCharacter extends Character {
 
-    private int vecesAlimentado = 0;
-    public static final int RECUPERO_DE_ENERGIA = 10;
+    private int timesFed = 0;
+    public static final int ENERGY_RECOVERY = 10;
 
     public WaterCharacter() {
 
@@ -22,10 +22,10 @@ public class WaterCharacter extends Character {
 
     @Override
     public void feed() throws CharacterFedMoreThan3TimesException {
-        this.vecesAlimentado++;
-        if (this.vecesAlimentado > 3)
+        this.timesFed++;
+        if (this.timesFed > 3)
             throw new CharacterFedMoreThan3TimesException();
-        this.energy.incrementarValorDadoRecuperoDeEnergia(RECUPERO_DE_ENERGIA);
+        this.energy.incrementValueGivenEnergyRecovery(ENERGY_RECOVERY);
     }
 
     @Override
@@ -75,8 +75,8 @@ public class WaterCharacter extends Character {
 
     @Override
     protected void receiveDamageDueToAFireCharacterHasAttacked(FireCharacter fireCharacter) {
-        int valor = this.shield.coverDamage(fireCharacter.getDamageAgainstWater());
-        this.life.decrementarValor(valor);
+        int value = this.shield.coverDamage(fireCharacter.getDamageAgainstWater());
+        this.life.decrementValue(value);
     }
 
     @Override
@@ -96,11 +96,11 @@ public class WaterCharacter extends Character {
 
     @Override
     public String getType() {
-        return "AGUA";
+        return CharacterType.WATER.toString();
     }
 
     @Override
     public void passThrough(Ground ground) {
-        this.energy.decrementarValor(ground.getEnergyCostDueToAWaterCharacterPassing());
+        this.energy.decrementValue(ground.getEnergyCostDueToAWaterCharacterPassing());
     }
 }

@@ -4,7 +4,7 @@ import com.nazareno.battleoftheelements.model.ground.Ground;
 
 public class RockCharacter extends Character {
 
-    private static final int RECUPERO_DE_ENERGIA = 8;
+    private static final int ENERGY_RECOVERY = 8;
 
     public RockCharacter() {
 
@@ -21,7 +21,7 @@ public class RockCharacter extends Character {
 
     @Override
     public void feed() throws CharacterFedMoreThan3TimesException {
-        this.energy.incrementarValorDadoRecuperoDeEnergia(RECUPERO_DE_ENERGIA);
+        this.energy.incrementValueGivenEnergyRecovery(ENERGY_RECOVERY);
     }
 
     @Override
@@ -76,8 +76,8 @@ public class RockCharacter extends Character {
 
     @Override
     protected void receiveDamageDueToAnAirCharacterHasAttacked(AirCharacter airCharacter) {
-        int valor = this.shield.coverDamage(airCharacter.getDamageAgainstRock());
-        this.life.decrementarValor(valor);
+        int value = this.shield.coverDamage(airCharacter.getDamageAgainstRock());
+        this.life.decrementValue(value);
     }
 
     @Override
@@ -87,11 +87,11 @@ public class RockCharacter extends Character {
 
     @Override
     public String getType() {
-        return "TIERRA";
+        return CharacterType.ROCK.toString();
     }
 
     @Override
     public void passThrough(Ground ground) {
-        this.energy.decrementarValor(ground.getEnergyCostDueToARockCharacterPassing());
+        this.energy.decrementValue(ground.getEnergyCostDueToARockCharacterPassing());
     }
 }

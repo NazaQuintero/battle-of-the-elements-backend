@@ -4,6 +4,7 @@ import com.nazareno.battleoftheelements.model.character.Character;
 import org.junit.Test;
 import com.nazareno.battleoftheelements.model.character.*;
 
+import static com.nazareno.battleoftheelements.model.character.CharacterType.FIRE;
 import static org.junit.Assert.assertEquals;
 
 public class CharacterFactoryTest {
@@ -18,11 +19,11 @@ public class CharacterFactoryTest {
     @Test
     public void aFireCharacterIsObtainedFromFactoryGivenCharacterType() throws UnknownCharacterTypeException {
         CharacterFactory characterFactory = CharacterFactory.getInstance();
-        Character character = characterFactory.getCharacter("FUEGO")
+        Character character = characterFactory.getCharacter(FIRE.toString())
                 .named("Wukong")
                 .withEnergy(new Energy(10))
                 .withLife(new Life(100));
-        assertEquals("FUEGO", character.getType());
+        assertEquals(FIRE.toString(), character.getType());
     }
 
     @Test(expected = UnknownCharacterTypeException.class)

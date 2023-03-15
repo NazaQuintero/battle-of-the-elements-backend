@@ -12,6 +12,7 @@ import com.nazareno.battleoftheelements.model.character.*;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.nazareno.battleoftheelements.model.character.CharacterType.*;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
@@ -26,7 +27,7 @@ public class MenuTest {
     public void init() throws UnknownCharacterTypeException {
         this.menu = new Menu();
         this.factory = CharacterFactory.getInstance();
-        this.aCharacter = factory.getCharacter("FUEGO")
+        this.aCharacter = factory.getCharacter(FIRE.toString())
                 .named("Wukong")
                 .withEnergy(new Energy(20))
                 .withLife(new Life(100));

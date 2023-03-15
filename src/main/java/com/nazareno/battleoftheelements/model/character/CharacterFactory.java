@@ -15,24 +15,17 @@ public class CharacterFactory {
 
     public Character getCharacter(String type) throws UnknownCharacterTypeException {
         Character character;
-        // @TODO: create an enum for Character types
-        switch (type) {
-            case "AGUA":
-                character = new WaterCharacter();
-                break;
-            case "FUEGO":
-                character = new FireCharacter();
-                break;
-            case "TIERRA":
-                character = new RockCharacter();
-                break;
-            case "AIRE":
-                character = new AirCharacter();
-                break;
-            default:
-                throw new UnknownCharacterTypeException();
+        try {
+            CharacterType characterType = CharacterType.valueOf(type);
+            character = switch (characterType) {
+                case WATER -> new WaterCharacter();
+                case FIRE -> new FireCharacter();
+                case ROCK -> new RockCharacter();
+                case AIR -> new AirCharacter();
+            };
+        } catch (Exception e) {
+            throw new UnknownCharacterTypeException();
         }
-
         return character;
     }
 }

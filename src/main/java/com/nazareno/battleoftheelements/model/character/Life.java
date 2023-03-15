@@ -1,28 +1,28 @@
 package com.nazareno.battleoftheelements.model.character;
 
 public class Life {
-    public static final int VIDA_MAXIMA = 100;
-    private int valor;
+    public static final int MAX_LIFE = 100;
+    private int value;
 
-    public Life(int valor) {
-        this.valor = valor;
+    public Life(int value) {
+        this.value = value;
     }
 
-    public int getValor() {
-        return this.valor;
+    public int getValue() {
+        return this.value;
     }
 
-    private int getRecuperoDeVida(int recupero) {
-        return this.valor + recupero > VIDA_MAXIMA ? VIDA_MAXIMA - this.valor : recupero;
+    private int getLifeToBeRecovered(int recovery) {
+        return this.value + recovery > MAX_LIFE ? MAX_LIFE - this.value : recovery;
     }
 
-    public void decrementarValor(int valor) {
-        this.valor -= valor;
+    public void decrementValue(int value) {
+        this.value -= value;
     }
 
-    public void incrementarValorDadoRecuperoDeVida(int recupero) {
-        if (this.valor < VIDA_MAXIMA) {
-            this.valor += getRecuperoDeVida(recupero);
+    public void incrementValueGivenLifeRecovery(int recovery) {
+        if (this.value < MAX_LIFE) {
+            this.value += getLifeToBeRecovered(recovery);
         }
     }
 }

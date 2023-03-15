@@ -1,32 +1,32 @@
 package com.nazareno.battleoftheelements.model.character;
 
 public class Energy {
-    private int valor;
-    public static final int ENERGIA_MAXIMA = 20;
+    private int value;
+    public static final int MAX_ENERGY = 20;
 
-    public Energy(int valor) {
-        this.valor = valor;
+    public Energy(int value) {
+        this.value = value;
     }
 
-    public int getValor() {
-        return this.valor;
+    public int getValue() {
+        return this.value;
     }
 
-    private int getRecuperoDeEnergia(int recupero) {
-        return this.valor + recupero > ENERGIA_MAXIMA ? ENERGIA_MAXIMA - this.valor : recupero;
+    private int getEnergyRecovery(int recovery) {
+        return this.value + recovery > MAX_ENERGY ? MAX_ENERGY - this.value : recovery;
     }
 
-    public void incrementarValorDadoRecuperoDeEnergia(int recupero) {
-        if (this.valor < ENERGIA_MAXIMA) {
-            this.valor += getRecuperoDeEnergia(recupero);
+    public void incrementValueGivenEnergyRecovery(int recovery) {
+        if (this.value < MAX_ENERGY) {
+            this.value += getEnergyRecovery(recovery);
         }
     }
 
-    public void decrementarValor(int energia) {
-        if (this.valor >= energia) {
-            this.valor -= energia;
+    public void decrementValue(int value) {
+        if (this.value >= value) {
+            this.value -= value;
         } else {
-            this.valor = 0;
+            this.value = 0;
         }
     }
 }

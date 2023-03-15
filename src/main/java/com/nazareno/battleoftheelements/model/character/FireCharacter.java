@@ -4,11 +4,7 @@ import com.nazareno.battleoftheelements.model.ground.Ground;
 
 public class FireCharacter extends Character {
 
-    public static final int RECUPERO_DE_VIDA = 15;
-
-    public FireCharacter(String nombre, Energy energy, Life life) {
-        super(nombre, energy, life);
-    }
+    public static final int LIFE_RECOVERY = 15;
 
     public FireCharacter() {
 
@@ -26,7 +22,7 @@ public class FireCharacter extends Character {
     @Override
     public void feed() throws CharacterFedMoreThan3TimesException {
 
-        this.life.incrementarValorDadoRecuperoDeVida(RECUPERO_DE_VIDA);
+        this.life.incrementValueGivenLifeRecovery(LIFE_RECOVERY);
     }
 
     @Override
@@ -56,8 +52,8 @@ public class FireCharacter extends Character {
 
     @Override
     protected void receiveDamageDueToAWaterCharacterHasAttacked(WaterCharacter waterCharacter) {
-        int valor = this.shield.coverDamage(waterCharacter.getDamageAgainstFire());
-        this.life.decrementarValor(valor);
+        int value = this.shield.coverDamage(waterCharacter.getDamageAgainstFire());
+        this.life.decrementValue(value);
     }
 
     @Override
@@ -72,8 +68,8 @@ public class FireCharacter extends Character {
 
     @Override
     protected void receiveDamageDueToAFireCharacterHasAttacked(FireCharacter fireCharacter) {
-        int valor = this.shield.coverDamage(fireCharacter.getDamageAgainstFire());
-        this.life.decrementarValor(valor);
+        int value = this.shield.coverDamage(fireCharacter.getDamageAgainstFire());
+        this.life.decrementValue(value);
     }
 
     @Override
@@ -83,8 +79,8 @@ public class FireCharacter extends Character {
 
     @Override
     protected void receiveDamageDueToAnAirCharacterHasAttacked(AirCharacter airCharacter) {
-        int valor = this.shield.coverDamage(airCharacter.getDamageAgainstFire());
-        this.life.decrementarValor(valor);
+        int value = this.shield.coverDamage(airCharacter.getDamageAgainstFire());
+        this.life.decrementValue(value);
     }
 
     @Override
@@ -94,11 +90,11 @@ public class FireCharacter extends Character {
 
     @Override
     public String getType() {
-        return "FUEGO";
+        return CharacterType.FIRE.toString();
     }
 
     @Override
     public void passThrough(Ground ground) {
-        this.energy.decrementarValor(ground.getEnergyCostDueToFireCharacterPassing());
+        this.energy.decrementValue(ground.getEnergyCostDueToFireCharacterPassing());
     }
 }

@@ -34,46 +34,46 @@ public class MenuTest {
 
     @Test
     public void seAgregaUnPersonaje() {
-        menu.agregarPersonaje(unCharacter);
-        assertEquals(1, menu.getCantidadPersonajes());
+        menu.addCharacter(unCharacter);
+        assertEquals(1, menu.getCharactersQuantity());
     }
 
     @Test
     public void seAgrega2VecesElMismoPersonaje() {
-        menu.agregarPersonaje(unCharacter);
-        menu.agregarPersonaje(unCharacter);
-        assertEquals(1, menu.getCantidadPersonajes());
+        menu.addCharacter(unCharacter);
+        menu.addCharacter(unCharacter);
+        assertEquals(1, menu.getCharactersQuantity());
     }
 
     @Test
     @Parameters({"Wukong"})
     public void seObtieneUnPersonajePorNombre(String nombrePersonaje) {
-        menu.agregarPersonaje(unCharacter);
-        assertEquals(unCharacter, menu.getPersonaje(nombrePersonaje));
+        menu.addCharacter(unCharacter);
+        assertEquals(unCharacter, menu.getCharacter(nombrePersonaje));
     }
 
     @Test
     @Parameters({"Wukong"})
     public void seBorraUnPersonajePorElNombre(String nombrePersonaje) {
-        menu.agregarPersonaje(unCharacter);
-        menu.borrarPersonaje(nombrePersonaje);
-        assertEquals(0, menu.getCantidadPersonajes());
+        menu.addCharacter(unCharacter);
+        menu.deleteCharacter(nombrePersonaje);
+        assertEquals(0, menu.getCharactersQuantity());
     }
 
     @Test
     public void seAlimentaUnPersonaje() throws CharacterFedMoreThan3TimesException {
         Character character = mock(Character.class);
-        menu.agregarPersonaje(character);
-        menu.alimentar(character.getName());
+        menu.addCharacter(character);
+        menu.feed(character.getName());
         verify(character, times(1)).feed();
     }
 
     @Test
     public void seObtieneElNombreDeTodosLosPersonajes() {
         List<String> nombresEsperados = Arrays.asList("Wukong", "Blitzcrank", "Varus");
-        menu.agregarPersonaje(unCharacter);
-        menu.agregarPersonaje(unCharacter.clone().named("Blitzcrank"));
-        menu.agregarPersonaje(unCharacter.clone().named("Varus"));
-        assertEquals(nombresEsperados, menu.obtenerNombrePersonajes());
+        menu.addCharacter(unCharacter);
+        menu.addCharacter(unCharacter.clone().named("Blitzcrank"));
+        menu.addCharacter(unCharacter.clone().named("Varus"));
+        assertEquals(nombresEsperados, menu.getCharactersNameAsList());
     }
 }

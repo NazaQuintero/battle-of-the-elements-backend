@@ -9,29 +9,29 @@ import java.util.List;
 import java.util.Map;
 
 public class Menu {
-    private Map<String, Character> personajes = new HashMap<>();
+    private Map<String, Character> characters = new HashMap<>();
 
-    public void agregarPersonaje(Character unCharacter) {
-        this.personajes.putIfAbsent(unCharacter.getName(), unCharacter);
+    public void addCharacter(Character character) {
+        this.characters.putIfAbsent(character.getName(), character);
     }
 
-    public int getCantidadPersonajes() {
-        return this.personajes.size();
+    public int getCharactersQuantity() {
+        return this.characters.size();
     }
 
-    public Character getPersonaje(String nombrePersonaje) {
-        return this.personajes.get(nombrePersonaje);
+    public Character getCharacter(String characterName) {
+        return this.characters.get(characterName);
     }
 
-    public void borrarPersonaje(String nombrePersonaje) {
-        this.personajes.remove(nombrePersonaje);
+    public void deleteCharacter(String characterName) {
+        this.characters.remove(characterName);
     }
 
-    public void alimentar(String nombrePersonaje) throws CharacterFedMoreThan3TimesException {
-        this.personajes.get(nombrePersonaje).feed();
+    public void feed(String characterName) throws CharacterFedMoreThan3TimesException {
+        this.characters.get(characterName).feed();
     }
 
-    public List<String> obtenerNombrePersonajes() {
-        return new ArrayList<>(this.personajes.keySet());
+    public List<String> getCharactersNameAsList() {
+        return new ArrayList<>(this.characters.keySet());
     }
 }

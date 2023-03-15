@@ -1,8 +1,8 @@
 package com.nazareno.battleoftheelements;
 
-import com.nazareno.battleoftheelements.model.Posicion;
+import com.nazareno.battleoftheelements.model.Position;
 import com.nazareno.battleoftheelements.model.PositionDoesNotExistException;
-import com.nazareno.battleoftheelements.model.Tablero;
+import com.nazareno.battleoftheelements.model.Board;
 import org.junit.Before;
 import org.junit.Test;
 import com.nazareno.battleoftheelements.model.ground.Mountain;
@@ -10,8 +10,8 @@ import com.nazareno.battleoftheelements.model.ground.GroundMultiton;
 
 import static org.junit.Assert.assertEquals;
 
-public class TableroTest {
-    Tablero tablero;
+public class BoardTest {
+    Board board;
 
     String[][] terrenos = {
         {"LAGO"         , "LAGO"        , "PRECIPICIO"  , "PRECIPICIO"  , "PRECIPICIO"  , "VACIO"       , "VOLCAN"      , "VOLCAN"      },
@@ -28,55 +28,55 @@ public class TableroTest {
 
     @Before
     public void init() {
-        tablero = new Tablero(cantidadDeFilasYCol);
+        board = new Board(cantidadDeFilasYCol);
         for (int i = 0; i < cantidadDeFilasYCol; i++) {
             for (int j = 0; j < cantidadDeFilasYCol; j++) {
-                tablero.setTerrenoEnPosicion(GroundMultiton.getInstance().getGround(terrenos[i][j]), new Posicion(j,i));
+                board.setGroundInPosition(GroundMultiton.getInstance().getGround(terrenos[i][j]), new Position(j,i));
             }
         }
     }
 
     @Test
     public void seAsignaTipoMontanaAPrimerPosicionDelTablero() throws PositionDoesNotExistException {
-        Posicion pos = new Posicion(0,0);
-        tablero.setTerrenoEnPosicion(new Mountain(), pos);
-        assertEquals("MONTANA", tablero.getTipoDeTerreno(pos));
+        Position pos = new Position(0,0);
+        board.setGroundInPosition(new Mountain(), pos);
+        assertEquals("MONTANA", board.getGroundType(pos));
     }
 
     @Test
     public void seAsingaTipoMontanaEnPos4x7yDelTablero() throws PositionDoesNotExistException {
-        Posicion pos = new Posicion(4,7);
-        tablero.setTerrenoEnPosicion(new Mountain(), pos);
-        assertEquals("MONTANA", tablero.getTipoDeTerreno(pos));
+        Position pos = new Position(4,7);
+        board.setGroundInPosition(new Mountain(), pos);
+        assertEquals("MONTANA", board.getGroundType(pos));
     }
 
     @Test
     public void pos4x3yEsDeTipoLago() throws PositionDoesNotExistException {
-        assertEquals("LAGO", tablero.getTipoDeTerreno(new Posicion(4, 3)));
+        assertEquals("LAGO", board.getGroundType(new Position(4, 3)));
     }
 
     @Test
     public void pos5x3yEsDeTipoVacio() throws PositionDoesNotExistException {
-        assertEquals("VACIO", tablero.getTipoDeTerreno(new Posicion(5, 3)));
+        assertEquals("VACIO", board.getGroundType(new Position(5, 3)));
     }
 
     @Test
     public void pos7x0yEsDeTipoVolcan() throws PositionDoesNotExistException {
-        assertEquals("VOLCAN", tablero.getTipoDeTerreno(new Posicion(7, 0)));
+        assertEquals("VOLCAN", board.getGroundType(new Position(7, 0)));
     }
 
     @Test
     public void pos7x3yEsDeTipoCamino() throws PositionDoesNotExistException {
-        assertEquals("CAMINO", tablero.getTipoDeTerreno(new Posicion(7, 3)));
+        assertEquals("CAMINO", board.getGroundType(new Position(7, 3)));
     }
 
     @Test
     public void pos2x7yEsDeTipoMontana() throws PositionDoesNotExistException {
-        assertEquals("MONTANA", tablero.getTipoDeTerreno(new Posicion(2, 7)));
+        assertEquals("MONTANA", board.getGroundType(new Position(2, 7)));
     }
 
     @Test
     public void pos3x7yEsDeTipoPrecipicio() throws PositionDoesNotExistException {
-        assertEquals("PRECIPICIO", tablero.getTipoDeTerreno(new Posicion(3, 7)));
+        assertEquals("PRECIPICIO", board.getGroundType(new Position(3, 7)));
     }
 }

@@ -5,8 +5,8 @@ import com.nazareno.battleoftheelements.model.PositionDoesNotExistException;
 import com.nazareno.battleoftheelements.model.Tablero;
 import org.junit.Before;
 import org.junit.Test;
-import com.nazareno.battleoftheelements.model.terreno.Montana;
-import com.nazareno.battleoftheelements.model.terreno.TerrenosMultiton;
+import com.nazareno.battleoftheelements.model.ground.Mountain;
+import com.nazareno.battleoftheelements.model.ground.GroundMultiton;
 
 import static org.junit.Assert.assertEquals;
 
@@ -31,7 +31,7 @@ public class TableroTest {
         tablero = new Tablero(cantidadDeFilasYCol);
         for (int i = 0; i < cantidadDeFilasYCol; i++) {
             for (int j = 0; j < cantidadDeFilasYCol; j++) {
-                tablero.setTerrenoEnPosicion(TerrenosMultiton.getInstance().getTerreno(terrenos[i][j]), new Posicion(j,i));
+                tablero.setTerrenoEnPosicion(GroundMultiton.getInstance().getGround(terrenos[i][j]), new Posicion(j,i));
             }
         }
     }
@@ -39,14 +39,14 @@ public class TableroTest {
     @Test
     public void seAsignaTipoMontanaAPrimerPosicionDelTablero() throws PositionDoesNotExistException {
         Posicion pos = new Posicion(0,0);
-        tablero.setTerrenoEnPosicion(new Montana(), pos);
+        tablero.setTerrenoEnPosicion(new Mountain(), pos);
         assertEquals("MONTANA", tablero.getTipoDeTerreno(pos));
     }
 
     @Test
     public void seAsingaTipoMontanaEnPos4x7yDelTablero() throws PositionDoesNotExistException {
         Posicion pos = new Posicion(4,7);
-        tablero.setTerrenoEnPosicion(new Montana(), pos);
+        tablero.setTerrenoEnPosicion(new Mountain(), pos);
         assertEquals("MONTANA", tablero.getTipoDeTerreno(pos));
     }
 

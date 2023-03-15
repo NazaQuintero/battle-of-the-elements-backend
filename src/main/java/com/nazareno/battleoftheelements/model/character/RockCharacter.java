@@ -1,6 +1,6 @@
-package com.nazareno.battleoftheelements.model.personaje;
+package com.nazareno.battleoftheelements.model.character;
 
-import com.nazareno.battleoftheelements.model.terreno.Ground;
+import com.nazareno.battleoftheelements.model.ground.Ground;
 
 public class RockCharacter extends Character {
 
@@ -76,7 +76,7 @@ public class RockCharacter extends Character {
 
     @Override
     protected void receiveDamageDueToAnAirCharacterHasAttacked(AirCharacter airCharacter) {
-        int valor = this.shield.cubrirDanio(airCharacter.getDamageAgainstRock());
+        int valor = this.shield.coverDamage(airCharacter.getDamageAgainstRock());
         this.life.decrementarValor(valor);
     }
 
@@ -92,6 +92,6 @@ public class RockCharacter extends Character {
 
     @Override
     public void passThrough(Ground ground) {
-        this.energy.decrementarValor(ground.obtenerCostoDeEnergiaDadoQuePasaTierra());
+        this.energy.decrementarValor(ground.getEnergyCostDueToARockCharacterPassing());
     }
 }

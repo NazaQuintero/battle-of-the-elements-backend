@@ -1,9 +1,9 @@
-package com.nazareno.battleoftheelements.model.personaje;
+package com.nazareno.battleoftheelements.model.character;
 
 import com.nazareno.battleoftheelements.model.common.Prototype;
-import com.nazareno.battleoftheelements.model.escudo.Shield;
-import com.nazareno.battleoftheelements.model.escudo.WithoutShield;
-import com.nazareno.battleoftheelements.model.terreno.Ground;
+import com.nazareno.battleoftheelements.model.shield.Shield;
+import com.nazareno.battleoftheelements.model.shield.WithoutShield;
+import com.nazareno.battleoftheelements.model.ground.Ground;
 
 public abstract class Character implements Prototype {
     protected String name;

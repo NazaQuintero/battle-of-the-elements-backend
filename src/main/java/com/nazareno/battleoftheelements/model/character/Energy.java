@@ -1,4 +1,4 @@
-package com.nazareno.battleoftheelements.model.personaje;
+package com.nazareno.battleoftheelements.model.character;
 
 public class Energy {
     private int valor;

@@ -1,4 +1,4 @@
-package com.nazareno.battleoftheelements.model.personaje;
+package com.nazareno.battleoftheelements.model.character;
 
 public class Life {
     public static final int VIDA_MAXIMA = 100;

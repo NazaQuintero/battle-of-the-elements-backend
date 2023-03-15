@@ -1,13 +1,13 @@
 package com.nazareno.battleoftheelements;
 
 import com.nazareno.battleoftheelements.model.Menu;
-import com.nazareno.battleoftheelements.model.personaje.Character;
+import com.nazareno.battleoftheelements.model.character.Character;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import com.nazareno.battleoftheelements.model.personaje.*;
+import com.nazareno.battleoftheelements.model.character.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,7 +23,7 @@ public class MenuTest {
     Character unCharacter;
 
     @Before
-    public void init() throws TipoDePersonajeDesconocidoException {
+    public void init() throws UnknownCharacterTypeException {
         this.menu = new Menu();
         this.factory = CharacterFactory.getInstance();
         this.unCharacter = factory.getCharacter("FUEGO")

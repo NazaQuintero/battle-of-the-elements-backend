@@ -1,12 +1,12 @@
 package com.nazareno.battleoftheelements;
 
-import com.nazareno.battleoftheelements.model.escudo.DosEscudos;
-import com.nazareno.battleoftheelements.model.escudo.MasDeDosEscudos;
-import com.nazareno.battleoftheelements.model.escudo.UnShield;
-import com.nazareno.battleoftheelements.model.personaje.Character;
+import com.nazareno.battleoftheelements.model.shield.TwoShields;
+import com.nazareno.battleoftheelements.model.shield.MoreThanTwoShields;
+import com.nazareno.battleoftheelements.model.shield.OneShield;
+import com.nazareno.battleoftheelements.model.character.Character;
 import org.junit.Before;
 import org.junit.Test;
-import com.nazareno.battleoftheelements.model.personaje.*;
+import com.nazareno.battleoftheelements.model.character.*;
 
 import static org.junit.Assert.assertEquals;
 
@@ -19,7 +19,7 @@ public class PersonajesTest {
     Character unCharacterDeAire;
 
     @Before
-    public void init() throws TipoDePersonajeDesconocidoException {
+    public void init() throws UnknownCharacterTypeException {
         CharacterFactory factory = CharacterFactory.getInstance();
 
         int valorEnergiaInicial = 0;
@@ -115,21 +115,21 @@ public class PersonajesTest {
 
     @Test
     public void unPersonajeDeAguaAtaqueAPersonajeDeAireConUnEscudo() {
-        unCharacterDeAire.setShield(new UnShield());
+        unCharacterDeAire.setShield(new OneShield());
         unCharacterDeAguaCon20DeEnergia.attack(unCharacterDeAire);
         assertEquals(82, unCharacterDeAire.getLife());
     }
 
     @Test
     public void unPersonajeDeAguaAtaqueAPersonajeDeAireConDosEscudos() {
-        unCharacterDeAire.setShield(new DosEscudos());
+        unCharacterDeAire.setShield(new TwoShields());
         unCharacterDeAguaCon20DeEnergia.attack(unCharacterDeAire);
         assertEquals(84, unCharacterDeAire.getLife());
     }
 
     @Test
     public void unPersonajeDeAguaAtaqueAPersonajeDeAireConMasDeDosEscudos() {
-        unCharacterDeAire.setShield(new MasDeDosEscudos());
+        unCharacterDeAire.setShield(new MoreThanTwoShields());
         unCharacterDeAguaCon20DeEnergia.attack(unCharacterDeAire);
         assertEquals(96, unCharacterDeAire.getLife());
     }
@@ -142,21 +142,21 @@ public class PersonajesTest {
 
     @Test
     public void unPersonajeDeAguaAtaqueAPersonajeDeFuegoConEscudo() {
-        unCharacterDeFuego.setShield(new UnShield());
+        unCharacterDeFuego.setShield(new OneShield());
         unCharacterDeAguaCon20DeEnergia.attack(unCharacterDeFuego);
         assertEquals(73, unCharacterDeFuego.getLife());
     }
 
     @Test
     public void unPersonajeDeAguaAtaqueAPersonajeDeFuegoConDosEscudos() {
-        unCharacterDeFuego.setShield(new DosEscudos());
+        unCharacterDeFuego.setShield(new TwoShields());
         unCharacterDeAguaCon20DeEnergia.attack(unCharacterDeFuego);
         assertEquals(76, unCharacterDeFuego.getLife());
     }
 
     @Test
     public void unPersonajeDeAguaAtaqueAPersonajeDeFuegoConMasDeDosEscudos() {
-        unCharacterDeFuego.setShield(new MasDeDosEscudos());
+        unCharacterDeFuego.setShield(new MoreThanTwoShields());
         unCharacterDeAguaCon20DeEnergia.attack(unCharacterDeFuego);
         assertEquals(94, unCharacterDeFuego.getLife());
     }

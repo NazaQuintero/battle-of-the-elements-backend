@@ -1,8 +1,8 @@
 package com.nazareno.battleoftheelements;
 
-import com.nazareno.battleoftheelements.model.personaje.Character;
+import com.nazareno.battleoftheelements.model.character.Character;
 import org.junit.Test;
-import com.nazareno.battleoftheelements.model.personaje.*;
+import com.nazareno.battleoftheelements.model.character.*;
 
 import static org.junit.Assert.assertEquals;
 
@@ -16,7 +16,7 @@ public class CharacterFactoryTest {
     }
 
     @Test
-    public void seObtieneUnPersonajeDeFuegoDeLaFactory() throws TipoDePersonajeDesconocidoException {
+    public void seObtieneUnPersonajeDeFuegoDeLaFactory() throws UnknownCharacterTypeException {
         CharacterFactory characterFactory = CharacterFactory.getInstance();
         Character character = characterFactory.getCharacter("FUEGO")
                 .named("Wukong")
@@ -25,8 +25,8 @@ public class CharacterFactoryTest {
         assertEquals("FUEGO", character.getType());
     }
 
-    @Test(expected = TipoDePersonajeDesconocidoException.class)
-    public void sePideUnPersonajeDeTipoRayo() throws TipoDePersonajeDesconocidoException {
+    @Test(expected = UnknownCharacterTypeException.class)
+    public void sePideUnPersonajeDeTipoRayo() throws UnknownCharacterTypeException {
         CharacterFactory.getInstance().getCharacter("RAYO")
                 .named("Pikachu")
                 .withEnergy(new Energy(10))

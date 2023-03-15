@@ -1,6 +1,6 @@
 package com.nazareno.battleoftheelements.model;
 
-import com.nazareno.battleoftheelements.model.terreno.Ground;
+import com.nazareno.battleoftheelements.model.ground.Ground;
 
 public class Tablero {
     private Matriz matriz;

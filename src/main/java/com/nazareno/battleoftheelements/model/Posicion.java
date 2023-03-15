@@ -1,7 +1,7 @@
 package com.nazareno.battleoftheelements.model;
 
-import com.nazareno.battleoftheelements.model.terreno.Ground;
-import com.nazareno.battleoftheelements.model.terreno.GroundIndefinido;
+import com.nazareno.battleoftheelements.model.ground.Ground;
+import com.nazareno.battleoftheelements.model.ground.UndefinedGround;
 
 public class Posicion {
     private final int x;
@@ -15,7 +15,7 @@ public class Posicion {
     public Posicion(int x, int y) {
         this.x = x;
         this.y = y;
-        this.ground = new GroundIndefinido();
+        this.ground = new UndefinedGround();
     }
 
     public int getX() {

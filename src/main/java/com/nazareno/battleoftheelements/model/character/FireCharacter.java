@@ -1,6 +1,6 @@
-package com.nazareno.battleoftheelements.model.personaje;
+package com.nazareno.battleoftheelements.model.character;
 
-import com.nazareno.battleoftheelements.model.terreno.Ground;
+import com.nazareno.battleoftheelements.model.ground.Ground;
 
 public class FireCharacter extends Character {
 
@@ -56,7 +56,7 @@ public class FireCharacter extends Character {
 
     @Override
     protected void receiveDamageDueToAWaterCharacterHasAttacked(WaterCharacter waterCharacter) {
-        int valor = this.shield.cubrirDanio(waterCharacter.getDamageAgainstFire());
+        int valor = this.shield.coverDamage(waterCharacter.getDamageAgainstFire());
         this.life.decrementarValor(valor);
     }
 
@@ -72,7 +72,7 @@ public class FireCharacter extends Character {
 
     @Override
     protected void receiveDamageDueToAFireCharacterHasAttacked(FireCharacter fireCharacter) {
-        int valor = this.shield.cubrirDanio(fireCharacter.getDamageAgainstFire());
+        int valor = this.shield.coverDamage(fireCharacter.getDamageAgainstFire());
         this.life.decrementarValor(valor);
     }
 
@@ -83,7 +83,7 @@ public class FireCharacter extends Character {
 
     @Override
     protected void receiveDamageDueToAnAirCharacterHasAttacked(AirCharacter airCharacter) {
-        int valor = this.shield.cubrirDanio(airCharacter.getDamageAgainstFire());
+        int valor = this.shield.coverDamage(airCharacter.getDamageAgainstFire());
         this.life.decrementarValor(valor);
     }
 
@@ -99,6 +99,6 @@ public class FireCharacter extends Character {
 
     @Override
     public void passThrough(Ground ground) {
-        this.energy.decrementarValor(ground.obtenerCostoDeEnergiaDadoQuePasaFuego());
+        this.energy.decrementarValor(ground.getEnergyCostDueToFireCharacterPassing());
     }
 }

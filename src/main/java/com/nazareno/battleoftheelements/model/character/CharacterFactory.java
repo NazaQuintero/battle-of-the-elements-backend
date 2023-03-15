@@ -1,4 +1,4 @@
-package com.nazareno.battleoftheelements.model.personaje;
+package com.nazareno.battleoftheelements.model.character;
 
 public class CharacterFactory {
     private static CharacterFactory instance;
@@ -13,7 +13,7 @@ public class CharacterFactory {
         return instance;
     }
 
-    public Character getCharacter(String type) throws TipoDePersonajeDesconocidoException {
+    public Character getCharacter(String type) throws UnknownCharacterTypeException {
         Character character;
         // @TODO: create an enum for Character types
         switch (type) {
@@ -30,7 +30,7 @@ public class CharacterFactory {
                 character = new AirCharacter();
                 break;
             default:
-                throw new TipoDePersonajeDesconocidoException();
+                throw new UnknownCharacterTypeException();
         }
 
         return character;

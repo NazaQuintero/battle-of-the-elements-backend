@@ -1,16 +1,26 @@
 package com.nazareno.battleoftheelements.model.character;
 
+import jakarta.persistence.*;
+import lombok.*;
+
+@Entity
+@Table(name = "energy")
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@RequiredArgsConstructor
 public class Energy {
-    private int value;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(name = "value")
+    @NonNull private int value;
+
     public static final int MAX_ENERGY = 20;
-
-    public Energy(int value) {
-        this.value = value;
-    }
-
-    public int getValue() {
-        return this.value;
-    }
 
     private int getEnergyRecovery(int recovery) {
         return this.value + recovery > MAX_ENERGY ? MAX_ENERGY - this.value : recovery;

@@ -1,22 +1,64 @@
 package com.nazareno.battleoftheelements.model.character;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.nazareno.battleoftheelements.exception.CharacterFedMoreThan3TimesException;
 import com.nazareno.battleoftheelements.model.common.Prototype;
 import com.nazareno.battleoftheelements.model.shield.Shield;
 import com.nazareno.battleoftheelements.model.shield.WithoutShield;
 import com.nazareno.battleoftheelements.model.ground.Ground;
+import jakarta.persistence.*;
+import lombok.*;
 
+@Entity
+@Table(name="personage")
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@RequiredArgsConstructor
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = RockCharacter.class, name = "ROCK"),
+        @JsonSubTypes.Type(value = WaterCharacter.class, name = "WATER"),
+        @JsonSubTypes.Type(value = FireCharacter.class, name = "FIRE"),
+        @JsonSubTypes.Type(value = AirCharacter.class, name = "AIR"),
+})
 public abstract class Character implements Prototype {
-    protected String name;
-    protected Energy energy;
-    protected Life life;
-    protected Shield shield = new WithoutShield();
 
-    public Character() {
-    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int id;
+
+    @Column(name = "type")
+    @NonNull protected String type;
+
+    @Column(name = "name")
+    @NonNull protected String name;
+
+    @Getter(AccessLevel.NONE)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "energy_id")
+    protected Energy energy;
+
+    @Getter(AccessLevel.NONE)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "life_id")
+    protected Life life;
+
+    @OneToOne
+    @JoinColumn(name = "shield_id")
+    protected Shield shield = new WithoutShield();
 
     public Character(Character p) {
         if (p != null) {
+            this.id = p.id;
+            this.type = String.valueOf(p.type);
             this.name = String.valueOf(p.name);
             this.energy = new Energy(p.energy.getValue());
             this.life = new Life(p.life.getValue());
@@ -24,44 +66,13 @@ public abstract class Character implements Prototype {
         }
     }
 
-
     public abstract Character clone();
-
-    public Character(String name, Energy energy, Life life) {
-        this.energy = energy;
-        this.life = life;
-        this.name = name;
-    }
 
     public void feed() throws CharacterFedMoreThan3TimesException { }
 
-    public int getEnergy() {
-        return this.energy.getValue();
-    }
+    public int getEnergy() { return this.energy.getValue(); }
 
-    public int getLife() {
-        return this.life.getValue();
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setEnergy(Energy energy) {
-        this.energy = energy;
-    }
-
-    public void setLife(Life life) {
-        this.life = life;
-    }
-
-    public void setShield(Shield shield) {
-        this.shield = shield;
-    }
+    public int getLife() { return this.life.getValue(); }
 
     public void attack(Character aCharacter) {
         aCharacter.receiveAttackFrom(this);
@@ -81,8 +92,6 @@ public abstract class Character implements Prototype {
     protected abstract void receiveDamageDueToAWaterCharacterHasAttacked(WaterCharacter waterCharacter);
     protected abstract void receiveDamageDueToAFireCharacterHasAttacked(FireCharacter fireCharacter);
     protected abstract void receiveDamageDueToAnAirCharacterHasAttacked(AirCharacter airCharacter);
-
-    public abstract String getType();
 
     public Character named(String name) {
         this.setName(name);

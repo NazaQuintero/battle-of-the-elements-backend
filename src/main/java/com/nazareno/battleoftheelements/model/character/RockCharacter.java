@@ -1,14 +1,18 @@
 package com.nazareno.battleoftheelements.model.character;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.nazareno.battleoftheelements.exception.CharacterFedMoreThan3TimesException;
 import com.nazareno.battleoftheelements.model.ground.Ground;
+import jakarta.persistence.Entity;
 
+@Entity
+@JsonTypeName("ROCK")
 public class RockCharacter extends Character {
 
     private static final int ENERGY_RECOVERY = 8;
 
     public RockCharacter() {
-
+        this.type = CharacterType.ROCK.toString();
     }
 
     public RockCharacter(RockCharacter p) {
@@ -86,10 +90,10 @@ public class RockCharacter extends Character {
         return 0;
     }
 
-    @Override
-    public String getType() {
-        return CharacterType.ROCK.toString();
-    }
+//    @Override
+//    public String getType() {
+//        return CharacterType.ROCK.toString();
+//    }
 
     @Override
     public void passThrough(Ground ground) {

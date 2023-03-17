@@ -1,14 +1,18 @@
 package com.nazareno.battleoftheelements.model.character;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.nazareno.battleoftheelements.exception.CharacterFedMoreThan3TimesException;
 import com.nazareno.battleoftheelements.model.ground.Ground;
+import jakarta.persistence.Entity;
 
+@Entity
+@JsonTypeName("FIRE")
 public class FireCharacter extends Character {
 
     public static final int LIFE_RECOVERY = 15;
 
     public FireCharacter() {
-
+        this.type = CharacterType.FIRE.toString();
     }
 
     public FireCharacter(FireCharacter p) {
@@ -89,10 +93,10 @@ public class FireCharacter extends Character {
         return 0;
     }
 
-    @Override
-    public String getType() {
-        return CharacterType.FIRE.toString();
-    }
+//    @Override
+//    public String getType() {
+//        return CharacterType.FIRE.toString();
+//    }
 
     @Override
     public void passThrough(Ground ground) {

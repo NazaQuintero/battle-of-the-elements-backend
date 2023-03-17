@@ -1,11 +1,15 @@
 package com.nazareno.battleoftheelements.model.character;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.nazareno.battleoftheelements.model.ground.Ground;
+import jakarta.persistence.Entity;
 
+@Entity
+@JsonTypeName("AIR")
 public class AirCharacter extends Character {
 
     public AirCharacter() {
-
+        this.type = CharacterType.AIR.toString();
     }
 
     public AirCharacter(AirCharacter p) {
@@ -75,10 +79,10 @@ public class AirCharacter extends Character {
         return 20;
     }
 
-    @Override
-    public String getType() {
-        return CharacterType.AIR.toString();
-    }
+//    @Override
+//    public String getType() {
+//        return CharacterType.AIR.toString();
+//    }
 
     @Override
     public void passThrough(Ground ground) {

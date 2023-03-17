@@ -20,7 +20,7 @@ import lombok.*;
 @RequiredArgsConstructor
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.NAME,
-        include = JsonTypeInfo.As.PROPERTY,
+        include = JsonTypeInfo.As.EXISTING_PROPERTY,
         property = "type")
 @JsonSubTypes({
         @JsonSubTypes.Type(value = WithoutShield.class, name = "NONE"),
@@ -34,7 +34,7 @@ public abstract class Shield implements Prototype {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "type")
+    @Column(name = "dtype", insertable=false, updatable=false)
     @NonNull protected String type;
 
     public abstract int coverDamage(int damage);

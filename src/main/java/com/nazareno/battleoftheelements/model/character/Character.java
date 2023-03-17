@@ -20,7 +20,7 @@ import lombok.*;
 @RequiredArgsConstructor
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.NAME,
-        include = JsonTypeInfo.As.PROPERTY,
+        include = JsonTypeInfo.As.EXISTING_PROPERTY,
         property = "type")
 @JsonSubTypes({
         @JsonSubTypes.Type(value = RockCharacter.class, name = "ROCK"),
@@ -35,8 +35,11 @@ public abstract class Character implements Prototype {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "type")
+    @Column(name = "dtype", insertable=false, updatable=false)
     @NonNull protected String type;
+
+    @Column(name = "times_fed")
+    @NonNull protected int timesFed = 0;
 
     @Column(name = "name")
     @NonNull protected String name;
@@ -51,7 +54,7 @@ public abstract class Character implements Prototype {
     @JoinColumn(name = "life_id")
     protected Life life;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "shield_id")
     protected Shield shield = new WithoutShield();
 

@@ -41,4 +41,22 @@ public class CharacterRestController {
         return characterService.save(character);
     }
 
+    @PutMapping("/characters")
+    public Character updateCharacter(@RequestBody Character character) {
+        return characterService.save(character);
+    }
+
+    @DeleteMapping("/characters/{characterId}")
+    public String deleteCharacter(@PathVariable int characterId) {
+        Character tempCharacter = characterService.findById(characterId);
+
+        if (tempCharacter == null) {
+            throw new RuntimeException("Character id not found - " + characterId);
+        }
+
+        characterService.deleteById(characterId);
+
+        return "Deleted character id - " + characterId;
+    }
+
 }

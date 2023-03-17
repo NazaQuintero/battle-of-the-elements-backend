@@ -1,42 +1,49 @@
 package com.nazareno.battleoftheelements.service;
 
-import com.nazareno.battleoftheelements.dao.CharacterDAO;
+import com.nazareno.battleoftheelements.dao.CharacterRepository;
 import com.nazareno.battleoftheelements.model.character.Character;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CharacterServiceImpl implements CharacterService {
 
-    private CharacterDAO characterDAO;
+    private CharacterRepository characterRepository;
 
     @Autowired
-    public CharacterServiceImpl(CharacterDAO characterDAO) {
-        this.characterDAO = characterDAO;
+    public CharacterServiceImpl(CharacterRepository characterRepository) {
+        this.characterRepository = characterRepository;
     }
 
     @Override
     public List<Character> findAll() {
-        return characterDAO.findAll();
+        return characterRepository.findAll();
     }
 
     @Override
     public Character findById(int id) {
-        return characterDAO.findById(id);
+        Optional<Character> result = characterRepository.findById(id);
+
+        Character character;
+
+        if (result.isPresent()) {
+            character = result.get();
+        } else {
+            throw new RuntimeException("Could not find character id - " + id);
+        }
+        return character;
     }
 
-    @Transactional
     @Override
     public Character save(Character character) {
-        return characterDAO.save(character);
+        return characterRepository.save(character);
     }
 
-    @Transactional
     @Override
     public void deleteById(int id) {
-        characterDAO.deleteById(id);
+        characterRepository.deleteById(id);
     }
 }

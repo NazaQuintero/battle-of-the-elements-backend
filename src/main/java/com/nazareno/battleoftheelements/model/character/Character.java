@@ -33,7 +33,7 @@ public abstract class Character implements Prototype {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    @NonNull protected int id;
 
     @Column(name = "dtype", insertable=false, updatable=false)
     @NonNull protected String type;
